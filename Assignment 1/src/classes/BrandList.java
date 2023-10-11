@@ -1,5 +1,7 @@
 package classes;
 import java.util.*;
+import java.io.*;
+
 
 public class BrandList {
     private ArrayList<Brand> brandList;
@@ -8,6 +10,15 @@ public class BrandList {
         brandList = new ArrayList<Brand>();
     }
     
+    public boolean loadFromFile(String filename){
+        File f = new File(filename);
+        if (!f.exists()){
+                       
+        }
+        else{
+            f.
+        }
+    }
 //    public boolean loadFromFile(String);
 //    public boolean saveToFile(String);
 //    public int searchID (String ID);
