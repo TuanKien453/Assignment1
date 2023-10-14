@@ -48,4 +48,24 @@ public class BrandList {
         }
     }
     
+    public void updateBrand(){
+        System.out.println("Enter brandID: ");
+        String brandID = scanner.nextLine();
+        scanner.nextLine();
+        boolean pos = searchID(brandID);
+        if (pos == false) {
+            System.out.println("Not found.");
+        } else {
+            System.out.print("Enter brandName: ");
+            String brandName = scanner.nextLine();
+            System.out.print("Enter soundBrand: ");
+            String soundBrand = scanner.nextLine();
+            System.out.print("Enter price: ");
+            double price = scanner.nextDouble();
+            scanner.nextLine(); // Clear the newline character from the input buffer
+            Brand brand = new Brand(brandID, brandName, soundBrand, price);
+            System.out.println("Brand updated successfully!");
+        }
+    }
+
 }
