@@ -1,17 +1,57 @@
-
 package classes;
+
 import java.util.*;
 
-
 public class Inputer {
+
     private final static Scanner scanner = new Scanner(System.in);
 
-    public static int inputInt(String msg,int min, int max) {
+    public static int inputInt(String msg, int min, int max) {
         int number;
         while (true) {
             try {
                 System.out.print(msg);
                 number = scanner.nextInt();
+                scanner.nextLine();
+                if (number >= min && number <= max) {
+                    break;
+                } else {
+                    System.out.println("Error: Input must be between " + min + " and " + max + ". Please try again.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Error: You must enter an integer. Please try again.");
+                scanner.nextLine();
+            }
+        }
+        return number;
+    }
+
+    public static int menuChoice(String msg, int min, int max) {
+        int number;
+        while (true) {
+            try {
+                System.out.print(msg);
+                number = scanner.nextInt();
+                scanner.nextLine();
+                if (number >= min && number <= max) {
+                    break;
+                } else {
+                    System.out.println("Error: Input must be between " + min + " and " + max + ". Please try again.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid choice. Please choose again.");
+                scanner.nextLine();
+            }
+        }
+        return number;
+    }
+
+    public static Double inputDouble(String msg, Double min, Double max) {
+        Double number;
+        while (true) {
+            try {
+                System.out.print(msg);
+                number = scanner.nextDouble();
                 scanner.nextLine();
                 if (number >= min && number <= max) {
                     break;
@@ -40,7 +80,8 @@ public class Inputer {
         }
         return input.trim();
     }
-        public static String inputPattern(String msg,String inputPattern) {
+
+    public static String inputPattern(String msg, String inputPattern) {
         String input;
         while (true) {
             try {
@@ -59,5 +100,5 @@ public class Inputer {
         }
         return input;
     }
-    
+
 }

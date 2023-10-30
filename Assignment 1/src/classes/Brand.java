@@ -51,8 +51,7 @@ public class Brand {
 
     @Override
     public String toString() {
-        String s = getClass().getSimpleName();
-        return s + "brandID=" + brandID + ", brandName=" + brandName + ", soundBrand=" + soundBrand + ", price=" + price;
+        return "brandID=" + brandID + "; brandName=" + brandName + "; soundBrand=" + soundBrand + "; price=" + price;
     }
     
     

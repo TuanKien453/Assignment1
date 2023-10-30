@@ -51,11 +51,12 @@ public class CarList {
         for (int i = 0; i < carList.size() - 1; i++) {
             if (carList.get(i).getEngineID().equals(engineID)) {
                 return true;
+            }
         }
-            return false;
+        return false;
     }
+            
+   // public void addCar() {
         
-    public void addCar() {
-        
-    }
+  //  }
 }
