@@ -15,7 +15,7 @@ public class CarList {
         carList = new ArrayList<Car>(); 
     }
 
-    
+   
 //    public String toString()
 //    public String screenString()
 //    public boolean loadFromFile(String filename)
@@ -55,7 +55,18 @@ public class CarList {
         }
         return -1;
     }
-            
+    
+    public void addCar(BrandList listBrand){
+        String carID = Inputer.inputString("Enter Car ID: ");
+        boolean index = searchID(carID);
+        if (index) {
+            Brand newBrand = listBrand.getUserChoice();
+            String color = Inputer.inputString("Enter color: ");
+            String frameID = Inputer.inputPattern("Enter frameID: ", "F0000");
+            String engineID = Inputer.inputPattern("Enter engineID: ", "E0000");
+        }
+    }
+
    // public void addCar() {
         
   //  }
@@ -81,4 +92,22 @@ public class CarList {
         }
         System.out.println("-----------------------------------------------");
     }
+
+    
+    public void printBasedBrandName(){
+        String name = Inputer.inputString("Enter a part of brand name: ");
+        int count =0;
+        for (int i = 0; i <carList.size() ; i++) {
+            Car c = carList.get(i);
+            if (c.getBrand().getBrandID().contains(name)) {
+                System.out.println(c);
+                count++;
+            }
+        }
+        if (count==0) {
+            System.out.println("No car is detected.");
+        }
+    }
+    
+    
 }

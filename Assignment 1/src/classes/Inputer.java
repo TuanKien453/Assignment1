@@ -45,6 +45,8 @@ public class Inputer {
         }
         return number;
     }
+    
+    
 
     public static Double inputDouble(String msg, Double min, Double max) {
         Double number;
