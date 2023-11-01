@@ -8,19 +8,19 @@ public class Main {
         BrandList brandList = new BrandList();
         CarList carList = new CarList();
         String[] options = {
-            "1 - List all brands",
-            "2 - Add a new brand",
-            "3 - Search a brand based on its ID",
-            "4 - Update a brand",
-            "5 - Save brands to the file",
-            "6 - List all cars in ascending order of brand names",
-            "7 - List cars based on a part of an input brand name",
-            "8 - Add a car",
-            "9 - Remove a car based on its ID",
-            "10- Update a car based on its ID",
-            "11- Save cars to file, named cars.txt",
-            "12- Load brand from file",
-            "13- Load car from file"};
+            "List all brands",
+            "Add a new brand",
+            "Search a brand based on its ID",
+            "Update a brand",
+            "Save brands to the file",
+            "List all cars in ascending order of brand names",
+            "List cars based on a part of an input brand name",
+            "Add a car",
+            "Remove a car based on its ID",
+            "Update a car based on its ID",
+            "Save cars to file, named cars.txt",
+            "Load brand from file",
+            "Load car from file"};
 
         do {
             choice = Menu.getChoice(options);

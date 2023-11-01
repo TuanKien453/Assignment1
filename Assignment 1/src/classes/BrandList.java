@@ -2,6 +2,7 @@ package classes;
 
 import java.util.*;
 import java.io.*;
+import java.lang.*;
 
 public class BrandList {
 
@@ -29,6 +30,16 @@ public class BrandList {
             result = FileIO.appendToFile(filename, s);
         }
         return result;
+    }
+    
+    public Brand getUserChoice() {
+        int i = 1;
+        for (Brand b : brandList) {
+            System.out.println(String.format("%-20s. || %-40s || %-40s || %-20s || %-20s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), b.getPrice()));
+            i++;
+        }
+        int choice = Inputer.inputInt("Choose a new brand: ", 1, brandList.size());
+        return brandList.get(choice-1);
     }
 
     public void loadFromFile(String filename) {
