@@ -30,7 +30,7 @@ public class BrandList {
         }
         return result;
     }
-    
+
     public Brand getUserChoice() {
         int i = 1;
         for (Brand b : brandList) {
@@ -38,7 +38,7 @@ public class BrandList {
             i++;
         }
         int choice = Inputer.inputInt("Choose a new brand: ", 1, brandList.size());
-        return brandList.get(choice-1);
+        return brandList.get(choice - 1);
     }
 
     public void loadFromFile(String filename) {
@@ -107,6 +107,15 @@ public class BrandList {
         } else {
             brandList.remove(index);
             System.out.println("Remove brand successfully!");
+        }
+    }
+
+    public Brand getBrand(String brandID) {
+        int pos = searchID(brandID);
+        if (pos == -1) {
+            return null;
+        } else {
+            return brandList.get(pos);
         }
     }
 }
