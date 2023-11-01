@@ -14,37 +14,58 @@ public class CarList {
     public CarList() {
         carList = new ArrayList<Car>(); 
     }
-
+    public boolean saveToFile(String filename){
+        boolean result = false;
+        // clear all car in file
+        FileIO.writeFile(filename, "");
+        for(int i = 0; i<carList.size(); i++){
+            String carData = carList.get(i).getCarID() + "|" + carList.get(i).getBrand().getBrandID() + "|";
+            carData += carList.get(i).getColor() + "|" + carList.get(i).getEngineID() + "|" + carList.get(i).getFrameID() + "\n";
+            result = FileIO.appendToFile(filename, carData);
+        }
+        return result;
+    }
     
-//    public String toString()
-//    public String screenString()
+    public boolean loadFromFile (String filename, BrandList bl ){
+        String Data = FileIO.readFile(filename);
+        String arr[] = Data.split("\n");
+        // clear all car in car list
+        carList.removeAll(carList);
+        for(int i = 0; i<arr.length; i++){
+            String carData[] = arr[i].split("\\|");
+            Brand br=bl.getBrands(carData[1]);
+            Car car = new Car(carData[0], br, carData[2], carData[3], carData[4]);
+            
+        }
+    }
+
 //    public boolean loadFromFile(String filename)
-//    public boolean saveToFile(String)
+//Done    public boolean saveToFile(String)
 //Done    public boolean searchID(String cardID)
-//    public boolean searchFrame(String fID)
-//    public boolean searchEngine(String eID)
-//    public void addCar()
+//Done    public boolean searchFrame(String fID)
+//Done    public boolean searchEngine(String eID)
+//    public void addCar() 
 //    public void printBaseBrandName()        
 //    public boolean removeCar()
 //    public boolean updateCar()        
 //    public void listCars()        
                                                 
-    public boolean searchID(String carID) {
+    public int searchID(String carID) {
         for (int i = 0; i < carList.size() - 1; i++) {
             if (carList.get(i).getCarID().equals(carID)) {
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }                    
     
-    public boolean searchFrame(String frameID) {
+    public int searchFrame(String frameID) {
         for (int i = 0; i < carList.size() - 1; i++) {
             if (carList.get(i).getFrameID().equals(frameID)) {
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
     
     public boolean searchEngine(String engineID) {
@@ -55,8 +76,6 @@ public class CarList {
         }
         return false;
     }
-            
-   // public void addCar() {
-        
-  //  }
+    
+   
 }

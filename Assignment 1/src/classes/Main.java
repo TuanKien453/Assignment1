@@ -21,7 +21,6 @@ public class Main {
             "11- Save cars to file, named cars.txt",
             "12- Load brand from file",
             "13- Load car from file"};
-
         do {
             choice = Menu.getChoice(options);
             switch (choice) {
@@ -42,6 +41,8 @@ public class Main {
                 case 9:
                 case 10:
                 case 11:
+                    carList.saveToFile("cars.txt");
+                    break;
                 case 12: brandList.loadFromFile("Brand.txt"); break;
                 case 13: 
                 default:
