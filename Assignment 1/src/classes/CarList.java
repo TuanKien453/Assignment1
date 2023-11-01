@@ -122,7 +122,7 @@ public class CarList {
             String updateColor = Inputer.inputString("Enter updateColor: ");
             String updateFrameID = Inputer.inputPattern("Enter updateFrameID: ","F0000");
             String updateEngineID = Inputer.inputPattern("Enter updateEngineID: ", "E0000");
-            Car car = new Car(updateID, newBrand, updateColor, updateID, updateID);
+            Car car = new Car(updateID, newBrand, updateColor, updateFrameID, updateEngineID);
             carList.add(index, car);
             System.out.println("Car updated successfully!");
         }
