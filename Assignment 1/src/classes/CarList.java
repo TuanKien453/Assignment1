@@ -8,9 +8,9 @@ package classes;
 
 import java.util.*;
 import java.lang.*;
+
 public class CarList {
     private ArrayList<Car> carList;
-    
     public CarList() {
         carList = new ArrayList<Car>(); 
     }
@@ -20,43 +20,65 @@ public class CarList {
 //    public String screenString()
 //    public boolean loadFromFile(String filename)
 //    public boolean saveToFile(String)
-//Done    public boolean searchID(String cardID)
-//    public boolean searchFrame(String fID)
-//    public boolean searchEngine(String eID)
+//Done    public int searchID(String cardID)
+//Done    public int searchFrame(String fID)
+//Done    public int searchEngine(String eID)
 //    public void addCar()
 //    public void printBaseBrandName()        
 //    public boolean removeCar()
 //    public boolean updateCar()        
 //    public void listCars()        
                                                 
-    public boolean searchID(String carID) {
-        for (int i = 0; i < carList.size() - 1; i++) {
-            if (carList.get(i).getCarID().equals(carID)) {
-                return true;
+     public int searchID (String carID) {
+        for (int i = 0; i < carList.size(); i++) {
+            if (carID.equals(carList.get(i).getCarID())) {
+                return i;
             }
         }
-        return false;
-    }                    
-    
-    public boolean searchFrame(String frameID) {
-        for (int i = 0; i < carList.size() - 1; i++) {
-            if (carList.get(i).getFrameID().equals(frameID)) {
-                return true;
-            }
-        }
-        return false;
+        return -1;
     }
     
-    public boolean searchEngine(String engineID) {
-        for (int i = 0; i < carList.size() - 1; i++) {
-            if (carList.get(i).getEngineID().equals(engineID)) {
-                return true;
+    private int searchEngineID(String searchEngineID) {
+        for (int i = 0; i < carList.size(); i++) {
+            if (searchEngineID.equals(carList.get(i).getEngineID())) {
+                return i;
             }
         }
-        return false;
+        return -1;
+    }
+
+    private int searchFrameID(String searchFrameID) {
+        for (int i = 0; i < carList.size(); i++) {
+            if (searchFrameID.equals(carList.get(i).getFrameID())) {
+                return i;
+            }
+        }
+        return -1;
     }
             
    // public void addCar() {
         
   //  }
+    
+    public boolean removeCar() {
+        String removedID;
+        int pos;
+        removedID = Inputer.inputString("Input car ID to removed: ");
+        pos = searchID(removedID);
+        if (pos >= 0) {
+            carList.remove(pos);
+            return true;
+        } else {
+            System.out.println("Not found carID");
+        }
+        return false;
+    }
+
+     public void listCars () {
+        System.out.println("-----------------------------------------------");
+        for (int i = 0; i < carList.size(); i++) {
+            System.out.println(carList.get(i).toString());
+        }
+        System.out.println("-----------------------------------------------");
+    }
 }
