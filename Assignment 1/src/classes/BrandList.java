@@ -7,7 +7,6 @@ import java.lang.*;
 public class BrandList {
 
     private ArrayList<Brand> brandList;
-    Scanner scanner = new Scanner(System.in);
 
     public BrandList() {
         brandList = new ArrayList<Brand>();
@@ -101,4 +100,13 @@ public class BrandList {
         System.out.println("-----------------------------------------------");
     }
 
+    public void removeBrand(String id) {
+        int index = searchID(id);
+        if (index == -1) {
+            System.out.println("Not found brand ID!");
+        } else {
+            brandList.remove(index);
+            System.out.println("Remove brand successfully!");
+        }
+    }
 }
