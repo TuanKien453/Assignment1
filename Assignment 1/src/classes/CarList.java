@@ -83,9 +83,13 @@ public class CarList {
         int index = searchID(carID);
         if (index == -1) {
             Brand newBrand = listBrand.getUserChoice();
+            String newBrandID = newBrand.getBrandID();
             String color = Inputer.inputString("Enter color: ");
             String frameID = Inputer.inputPattern("Enter frameID: ", "F0000");
             String engineID = Inputer.inputPattern("Enter engineID: ", "E0000");
+            Car newCar = new Car(carID, newBrand, color, frameID, engineID);
+            carList.add(newCar);
+            
         } else {
             System.out.println("Car with the same ID already exists!");
         }
@@ -103,6 +107,24 @@ public class CarList {
         }
         if (count == 0) {
             System.out.println("No car is detected.");
+        }
+    }
+    
+    public void updateCar(BrandList brandList){
+        String updateID = Inputer.inputString("Enter ID you want to update: ");
+        int index = searchID(updateID);
+        if (index==-1) {
+            System.out.println("Car with ID "+updateID+" is not found.");
+        }
+        else{
+            Brand newBrand = brandList.getUserChoice();
+            String newBrandID = newBrand.getBrandID();
+            String updateColor = Inputer.inputString("Enter updateColor: ");
+            String updateFrameID = Inputer.inputPattern("Enter updateFrameID: ","F0000");
+            String updateEngineID = Inputer.inputPattern("Enter updateEngineID: ", "E0000");
+            Car car = new Car(updateID, newBrand, updateColor, updateID, updateID);
+            carList.add(index, car);
+            System.out.println("Car updated successfully!");
         }
     }
 
