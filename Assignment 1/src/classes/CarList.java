@@ -79,20 +79,23 @@ public class CarList {
     }
 
     public void addCar(BrandList listBrand) {
-        String carID = Inputer.inputString("Enter Car ID: ");
-        int index = searchID(carID);
-        if (index == -1) {
-            Brand newBrand = listBrand.getUserChoice();
-            String newBrandID = newBrand.getBrandID();
-            String color = Inputer.inputString("Enter color: ");
-            String frameID = Inputer.inputPattern("Enter frameID: ", "F0000");
-            String engineID = Inputer.inputPattern("Enter engineID: ", "E0000");
-            Car newCar = new Car(carID, newBrand, color, frameID, engineID);
-            carList.add(newCar);
-            
-        } else {
-            System.out.println("Car with the same ID already exists!");
-        }
+        int index;
+        String carID;
+        do {
+            carID = Inputer.inputString("Enter Car ID: ");
+            index = searchID(carID);
+            if (index!=-1) {
+                System.out.println("Car with the same ID already exists!.");
+            }
+        } while (index==-1);
+        Brand newBrand = listBrand.getUserChoice();
+        String newBrandID = newBrand.getBrandID();
+        String color = Inputer.inputString("Enter color: ");
+        String frameID = Inputer.inputPattern("Enter frameID: ", "F0000");
+        String engineID = Inputer.inputPattern("Enter engineID: ", "E0000");
+        Car newCar = new Car(carID, newBrand, color, frameID, engineID);
+        carList.add(newCar);
+        System.out.println("Car added succesfully!.");
     }
 
     public void printBasedBrandName() {
