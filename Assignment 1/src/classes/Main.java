@@ -7,6 +7,7 @@ public class Main {
         int choice;
         BrandList brandList = new BrandList();
         CarList carList = new CarList();
+        String ID = null;
         String[] options = {
             "List all brands",
             "Add a new brand",
@@ -32,18 +33,35 @@ public class Main {
                     brandList.addBrand();
                     break;
                 case 3:
+                    brandList.searchID(ID);
+                    break;
                 case 4:
+                    brandList.updateBrand();
+                    break;
                 case 5:
                     brandList.saveToFile("Brand.txt");
                     break;
                 case 6:
+                    carList.listCars();
+                    break;
                 case 7:
+                    carList.listCarsByBrand();
+                    break;
                 case 8:
+                    carList.addCar(brandList);
+                    break;
                 case 9:
+                    carList.removeCar();
+                    break;
                 case 10:
+                    carList.updateCar(brandList);
                 case 11:
+                    carList.saveToFile("Cars.txt");
+                    break;
                 case 12: brandList.loadFromFile("Brand.txt"); break;
                 case 13: 
+                    carList.loadFromFile("Cars.txt", brandList);
+                    break;
                 default:
                     System.out.println("Invalid choice. Please choose again.");
             }

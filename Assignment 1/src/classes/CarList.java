@@ -158,4 +158,8 @@ public class CarList {
         }
         System.out.println("-----------------------------------------------");
     }
+
+    public void listCarsByBrand() {
+        
+    }
 }
