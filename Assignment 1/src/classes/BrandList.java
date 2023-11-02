@@ -1,7 +1,6 @@
 package classes;
 
 import java.util.*;
-import java.io.*;
 import java.lang.*;
 
 public class BrandList {
@@ -19,22 +18,23 @@ public class BrandList {
 //Done    public void addBrand();
 //Done    public void updateBrand();
 //Done    public void listBrands();
-    public boolean saveToFile(String filename) {
-        boolean result = false;
+    public void saveToFile(String filename) {
+
         //Clear the file
         FileIO.writeFile(filename, "");
         for (int i = 0; i < brandList.size(); i++) {
             String s = brandList.get(i).getBrandID() + "|" + brandList.get(i).getBrandName()
                     + "|" + brandList.get(i).getSoundBrand() + "|" + brandList.get(i).getPrice() + "\n";
-            result = FileIO.appendToFile(filename, s);
+            FileIO.appendToFile(filename, s);
         }
-        return result;
+        System.out.println("Save to file successfully! ");
     }
 
     public Brand getUserChoice() {
         int i = 1;
+        System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", "STT", "BrandID", "BrandName", "SoundBrand", "Price"));
         for (Brand b : brandList) {
-            System.out.println(String.format("%-20s. || %-40s || %-40s || %-20s || %-20s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), b.getPrice()));
+            System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), b.getPrice()));
             i++;
         }
         int choice = Inputer.inputInt("Choose a new brand: ", 1, brandList.size());
@@ -50,10 +50,10 @@ public class BrandList {
             String brandData[] = arr[i].split("\\|");
             brandList.add(new Brand(brandData[0], brandData[1], brandData[2], Double.valueOf(brandData[3])));
         }
+        System.out.println("Load from file successfully! ");
     }
 
     public int searchID(String ID) {
-        ID = Inputer.inputString("Enter ID of brand you want to search: ");
         for (int i = 0; i < brandList.size(); i++) {
             if (brandList.get(i).getBrandID().equals(ID)) {
                 return i;
@@ -63,16 +63,34 @@ public class BrandList {
         return -1;
     }
 
+    public void searchBrand() {
+        String ID = Inputer.inputString("Enter ID of brand you want to search: ");
+        for (int i = 0; i < brandList.size(); i++) {
+            if (brandList.get(i).getBrandID().equals(ID)) {
+                System.out.println("Found: " + brandList.get(i).toString());
+                return;
+            }
+        }
+        System.out.println("Not found Brand with ID" + ID);
+    }
+
     public void addBrand() {
         int index;
         String brandID;
-        do {
+
+        while (true) {
             brandID = Inputer.inputString("Enter brand ID: ");
             index = searchID(brandID);
+            if (brandID.equals("back")) {
+                return;
+            }
             if (index != -1) {
                 System.out.println("Brand with the same ID already exists!");
+                System.out.println("Please try again! or input back to return MainMenu!");
+            } else {
+                break;
             }
-        } while (index == -1);
+        }
         String brandName = Inputer.inputString("Enter brand name: ");
         String soundBrand = Inputer.inputString("Enter sound brand: ");
         double price = Inputer.inputDouble("Enter price: ", 0d, 100000000000d);
@@ -91,17 +109,18 @@ public class BrandList {
             String soundBrand = Inputer.inputString("Enter sound brand: ");
             double price = Inputer.inputDouble("Enter price: ", 0d, 100000000000d);
             Brand brand = new Brand(brandID, brandName, soundBrand, price);
-            brandList.add(index, brand);
+            brandList.set(index, brand);
             System.out.println("Brand updated successfully!");
         }
     }
 
     public void listBrands() {
-        System.out.println("-----------------------------------------------");
-        for (int i = 0; i < brandList.size(); i++) {
-            System.out.println(brandList.get(i).toString());
+        int i = 1;
+        System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", "STT", "BrandID", "BrandName", "SoundBrand", "Price"));
+        for (Brand b : brandList) {
+            System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), b.getPrice()));
+            i++;
         }
-        System.out.println("-----------------------------------------------");
     }
 
     public void removeBrand(String id) {

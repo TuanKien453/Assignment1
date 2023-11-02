@@ -1,7 +1,9 @@
 package classes;
 
+import java.text.DecimalFormat;
 
 public class Brand {
+
     private String brandID;
     private String brandName;
     private String soundBrand;
@@ -51,8 +53,9 @@ public class Brand {
 
     @Override
     public String toString() {
-        return "brandID=" + brandID + "; brandName=" + brandName + "; soundBrand=" + soundBrand + "; price=" + price;
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        String formattedPrice = decimalFormat.format(price);
+        return "brandID=" + brandID + "; brandName=" + brandName + "; soundBrand=" + soundBrand + "; price=" + formattedPrice;
     }
-    
-    
+
 }

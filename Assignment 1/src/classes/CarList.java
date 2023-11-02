@@ -16,16 +16,16 @@ public class CarList {
         carList = new ArrayList<Car>();
     }
 
-    public boolean saveToFile(String filename) {
-        boolean result = false;
+    public void saveToFile(String filename) {
+
         // clear all car in file
         FileIO.writeFile(filename, "");
         for (int i = 0; i < carList.size(); i++) {
             String carData = carList.get(i).getCarID() + "|" + carList.get(i).getBrand().getBrandID() + "|";
-            carData += carList.get(i).getColor() + "|" + carList.get(i).getEngineID() + "|" + carList.get(i).getFrameID() + "\n";
-            result = FileIO.appendToFile(filename, carData);
+            carData += carList.get(i).getColor() + "|" + carList.get(i).getFrameID() + "|" + carList.get(i).getEngineID() + "\n";
+            FileIO.appendToFile(filename, carData);
         }
-        return result;
+        System.out.println("Save to file successfully! ");
     }
 
     public void loadFromFile(String filename, BrandList bl) {
@@ -36,9 +36,15 @@ public class CarList {
         for (int i = 0; i < arr.length; i++) {
             String carData[] = arr[i].split("\\|");
             Brand br = bl.getBrand(carData[1]);
-            Car car = new Car(carData[0], br, carData[2], carData[3], carData[4]);
+            if (br == null) {
+                System.out.println("Faile to load from file! Brand not found.");
+                return;
+            }
+
+            Car car = new Car(carData[0], br, carData[2], carData[3], carData[4].trim());
             carList.add(car);
         }
+        System.out.println("Load from file successfully! ");
     }
 
 //Done    public boolean loadFromFile(String filename)
@@ -52,7 +58,7 @@ public class CarList {
 //    public boolean updateCar()        
 //Done    public void listCars()        
     public int searchID(String carID) {
-        for (int i = 0; i < carList.size() - 1; i++) {
+        for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getCarID().equals(carID)) {
                 return i;
             }
@@ -61,7 +67,7 @@ public class CarList {
     }
 
     public int searchFrame(String frameID) {
-        for (int i = 0; i < carList.size() - 1; i++) {
+        for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getFrameID().equals(frameID)) {
                 return i;
             }
@@ -70,7 +76,7 @@ public class CarList {
     }
 
     public boolean searchEngine(String engineID) {
-        for (int i = 0; i < carList.size() - 1; i++) {
+        for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getEngineID().equals(engineID)) {
                 return true;
             }
@@ -81,18 +87,25 @@ public class CarList {
     public void addCar(BrandList listBrand) {
         int index;
         String carID;
-        do {
+        while (true) {
             carID = Inputer.inputString("Enter Car ID: ");
             index = searchID(carID);
-            if (index!=-1) {
-                System.out.println("Car with the same ID already exists!.");
+            if (carID.equals("back")) {
+                return;
             }
-        } while (index==-1);
+            if (index != -1) {
+                System.out.println("Car with the same ID already exists!");
+                System.out.println("Please try again! or input back to return MainMenu!");
+            } else {
+                break;
+            }
+        }
+
         Brand newBrand = listBrand.getUserChoice();
-        String newBrandID = newBrand.getBrandID();
+
         String color = Inputer.inputString("Enter color: ");
-        String frameID = Inputer.inputPattern("Enter frameID: ", "F0000");
-        String engineID = Inputer.inputPattern("Enter engineID: ", "E0000");
+        String frameID = Inputer.inputString("Enter frameID: ");
+        String engineID = Inputer.inputString("Enter engineID: ");
         Car newCar = new Car(carID, newBrand, color, frameID, engineID);
         carList.add(newCar);
         System.out.println("Car added succesfully!.");
@@ -112,21 +125,20 @@ public class CarList {
             System.out.println("No car is detected.");
         }
     }
-    
-    public void updateCar(BrandList brandList){
+
+    public void updateCar(BrandList brandList) {
         String updateID = Inputer.inputString("Enter ID you want to update: ");
         int index = searchID(updateID);
-        if (index==-1) {
-            System.out.println("Car with ID "+updateID+" is not found.");
-        }
-        else{
+        if (index == -1) {
+            System.out.println("Car with ID " + updateID + " is not found.");
+        } else {
             Brand newBrand = brandList.getUserChoice();
             String newBrandID = newBrand.getBrandID();
             String updateColor = Inputer.inputString("Enter updateColor: ");
-            String updateFrameID = Inputer.inputPattern("Enter updateFrameID: ","F0000");
-            String updateEngineID = Inputer.inputPattern("Enter updateEngineID: ", "E0000");
+            String updateFrameID = Inputer.inputString("Enter updateFrameID: ");
+            String updateEngineID = Inputer.inputString("Enter updateEngineID: ");
             Car car = new Car(updateID, newBrand, updateColor, updateFrameID, updateEngineID);
-            carList.add(index, car);
+            carList.set(index, car);
             System.out.println("Car updated successfully!");
         }
     }
@@ -152,14 +164,16 @@ public class CarList {
                 return c2.getBrand().getBrandName().compareTo(c1.getBrand().getBrandName());
             }
         });
-        System.out.println("-----------------------------------------------");
-        for (int i = 0; i < carList.size(); i++) {
-            System.out.println(carList.get(i).screenString());
+        int i = 1;
+        System.out.println(String.format("%-5s. || %-10s || %-15s || %-15s || %-15s || %-15s", "STT", "CarID", "BrandID", "Color", "FrameID", "EngineID"));
+        for (Car c : carList) {
+            System.out.println(String.format("%-5s. || %-10s || %-15s || %-15s || %-15s || %-15s",
+                    i, c.getCarID(), c.getBrand().getBrandID(), c.getColor(),  c.getFrameID(), c.getEngineID()   ));
+            i++;
         }
-        System.out.println("-----------------------------------------------");
     }
 
     public void listCarsByBrand() {
-        
+
     }
 }

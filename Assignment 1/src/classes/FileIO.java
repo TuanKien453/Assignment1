@@ -67,7 +67,6 @@ public class FileIO {
         } catch (IOException e) {
             System.err.println("Error reading file: " + e.getMessage());
         }
-        // return a String convert system-dependent line to '\n'
         return content.toString();
     }
 }
