@@ -64,18 +64,21 @@ public class BrandList {
     }
 
     public void addBrand() {
-        String brandID = Inputer.inputString("Enter brand ID: ");
-        int index = searchID(brandID);
-        if (index == -1) {
-            String brandName = Inputer.inputString("Enter brand name: ");
-            String soundBrand = Inputer.inputString("Enter sound brand: ");
-            double price = Inputer.inputDouble("Enter price: ", 0d, 100000000000d);
-            Brand brand = new Brand(brandID, brandName, soundBrand, price);
-            brandList.add(brand);
-            System.out.println("Brand added successfully!");
-        } else {
-            System.out.println("Brand with the same ID already exists!");
-        }
+        int index;
+        String brandID;
+        do {
+            brandID = Inputer.inputString("Enter brand ID: ");
+            index = searchID(brandID);
+            if (index != -1) {
+                System.out.println("Brand with the same ID already exists!");
+            }
+        } while (index == -1);
+        String brandName = Inputer.inputString("Enter brand name: ");
+        String soundBrand = Inputer.inputString("Enter sound brand: ");
+        double price = Inputer.inputDouble("Enter price: ", 0d, 100000000000d);
+        Brand brand = new Brand(brandID, brandName, soundBrand, price);
+        brandList.add(brand);
+        System.out.println("Brand added successfully!");
     }
 
     public void updateBrand() {
