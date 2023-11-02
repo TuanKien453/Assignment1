@@ -53,6 +53,7 @@ public class BrandList {
     }
 
     public int searchID(String ID) {
+        ID = Inputer.inputString("Enter ID of brand you want to search: ");
         for (int i = 0; i < brandList.size(); i++) {
             if (brandList.get(i).getBrandID().equals(ID)) {
                 return i;

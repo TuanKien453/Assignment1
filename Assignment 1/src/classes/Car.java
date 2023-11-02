@@ -65,7 +65,7 @@ public class Car {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "carID=" + carID + ", brand=" + brand + ", color=" + color + ", frameID=" + frameID + ", engineID=" + engineID + '}';
+        return  carID + ", " + brand + "." + brand.getBrandID() +", "+ color + ", " + frameID + ", " + engineID;
     }
     
     public int comparedTo(Car car) {
@@ -75,4 +75,7 @@ public class Car {
         return this.carID.compareTo(car.carID);
     }
     
+    public String screenString(){
+        return brand + "\n" + carID +", "+color+", "+ frameID + ", " + engineID;
+    }
 }
