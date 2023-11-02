@@ -143,9 +143,15 @@ public class CarList {
     }
 
     public void listCars() {
+        Collections.sort(carList, new Comparator<Car>() {
+            @Override
+            public int compare(Car c1, Car c2) {
+                return c2.getBrand().getBrandName().compareTo(c1.getBrand().getBrandName());
+            }
+        });
         System.out.println("-----------------------------------------------");
         for (int i = 0; i < carList.size(); i++) {
-            System.out.println(carList.get(i).toString());
+            System.out.println(carList.get(i).screenString());
         }
         System.out.println("-----------------------------------------------");
     }
