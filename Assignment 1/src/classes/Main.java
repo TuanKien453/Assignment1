@@ -51,7 +51,7 @@ public class Main {
                     Inputer.inputString("Press Enter to continue");
                     break;
                 case 7:
-                    carList.listCarsByBrand();
+                    carList.printBaseBrandName(brandList);
                     Inputer.inputString("Press Enter to continue");
                     break;
                 case 8:

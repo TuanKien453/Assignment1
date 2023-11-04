@@ -2,6 +2,7 @@ package classes;
 
 import java.util.*;
 import java.lang.*;
+import java.text.DecimalFormat;
 
 public class BrandList {
 
@@ -11,10 +12,14 @@ public class BrandList {
         brandList = new ArrayList<Brand>();
     }
 
+    public ArrayList<Brand> getBrandList() {
+        return brandList;
+    }
+
 //Done    public boolean loadFromFile(String);
 //Done    public boolean saveToFile(String);
 //Done    public int searchID (String ID);
-//    public Brand getUserChoice();
+//Done    public Brand getUserChoice();
 //Done    public void addBrand();
 //Done    public void updateBrand();
 //Done    public void listBrands();
@@ -32,12 +37,14 @@ public class BrandList {
 
     public Brand getUserChoice() {
         int i = 1;
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
         System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", "STT", "BrandID", "BrandName", "SoundBrand", "Price"));
         for (Brand b : brandList) {
-            System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), b.getPrice()));
+            String formattedPrice = decimalFormat.format(b.getPrice());
+            System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), formattedPrice));
             i++;
         }
-        int choice = Inputer.inputInt("Choose a new brand: ", 1, brandList.size());
+        int choice = Inputer.inputInt("Choose the brand: ", 1, brandList.size());
         return brandList.get(choice - 1);
     }
 
@@ -116,9 +123,12 @@ public class BrandList {
 
     public void listBrands() {
         int i = 1;
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+
         System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", "STT", "BrandID", "BrandName", "SoundBrand", "Price"));
         for (Brand b : brandList) {
-            System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), b.getPrice()));
+            String formattedPrice = decimalFormat.format(b.getPrice());
+            System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), formattedPrice));
             i++;
         }
     }

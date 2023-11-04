@@ -55,7 +55,7 @@ public class CarList {
 //Done    public void addCar() 
 //Done    public void printBaseBrandName()        
 //Done    public boolean removeCar()
-//    public boolean updateCar()        
+//Done    public boolean updateCar()        
 //Done    public void listCars()        
     public int searchID(String carID) {
         for (int i = 0; i < carList.size(); i++) {
@@ -85,6 +85,9 @@ public class CarList {
     }
 
     public void addCar(BrandList listBrand) {
+//        for (int i = 0; i < 50; i++) {
+//            carList.add(GeneratorInstant.generateRandomCar("C" + String.valueOf(i), listBrand));
+//        }
         int index;
         String carID;
         while (true) {
@@ -117,8 +120,8 @@ public class CarList {
         for (int i = 0; i < carList.size(); i++) {
             Car c = carList.get(i);
             if (c.getBrand().getBrandID().contains(name)) {
-                System.out.println(c);
-                count++;
+                System.out.println(String.format("%-5s. || %-10s || %-15s || %-15s || %-15s || %-15s",
+                        i + 1, c.getCarID(), c.getBrand().getBrandID(), c.getColor(), c.getFrameID(), c.getEngineID()));
             }
         }
         if (count == 0) {
@@ -165,15 +168,38 @@ public class CarList {
             }
         });
         int i = 1;
-        System.out.println(String.format("%-5s. || %-10s || %-15s || %-15s || %-15s || %-15s", "STT", "CarID", "BrandID", "Color", "FrameID", "EngineID"));
+        System.out.println(String.format("%-5s. || %-7s || %-40s || %-12s || %-12s || %-12s || %-12s", "STT", "CarID", "BrandName", "BrandID", "Color", "FrameID", "EngineID"));
         for (Car c : carList) {
-            System.out.println(String.format("%-5s. || %-10s || %-15s || %-15s || %-15s || %-15s",
-                    i, c.getCarID(), c.getBrand().getBrandID(), c.getColor(),  c.getFrameID(), c.getEngineID()   ));
+            System.out.println(String.format("%-5s. || %-7s || %-40s || %-12s || %-12s || %-12s || %-12s",
+                    i, c.getCarID(), c.getBrand().getBrandName(), c.getBrand().getBrandID(), c.getColor(), c.getFrameID(), c.getEngineID()));
             i++;
         }
     }
 
-    public void listCarsByBrand() {
+    public void printBaseBrandName(BrandList bl) {
+        String input = Inputer.inputString("Enter the brand name: ");
+        int i = 1;
+        ArrayList<Brand> PrintbrandList = new ArrayList();
+        for (Brand b : bl.getBrandList()) {
+            if (b.getBrandName().contains(input)) {
+                PrintbrandList.add(b);
+            }
+        }
+        if (PrintbrandList.isEmpty()) {
+            System.out.println("Not found any cars");
+            return;
+        }
+
+        System.out.println("All cars contain '" + input + "' in brand name: ");
+        for (Car c : carList) {
+            for (Brand b : PrintbrandList) {
+                if (c.getBrand().equals(b)) {
+                    System.out.println(String.format("%-5s. || %-7s || %-40s || %-12s || %-12s || %-12s || %-12s",
+                            i, c.getCarID(), c.getBrand().getBrandName(), c.getBrand().getBrandID(), c.getColor(), c.getFrameID(), c.getEngineID()));
+                    i++;
+                }
+            }
+        }
 
     }
 }

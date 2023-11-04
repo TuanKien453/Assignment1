@@ -25,7 +25,6 @@ public class GeneratorInstant {
     private static final String[] colors = {
         "red", "black", "orange", "white", "pink", "grey"
     };
-
     public static Brand generateRandomBrand() {
         Random random = new Random();
         int index = random.nextInt(brandIDs.length);
@@ -34,5 +33,16 @@ public class GeneratorInstant {
         String soundBrand = soundBrands[random.nextInt(soundBrands.length)];
         double price = 1.0 + (10.0 - 1.0) * random.nextDouble();;
         return new Brand(brandID, brandName, soundBrand, price);
+    }
+    public static Car generateRandomCar(String ID,BrandList bl){
+        Random random = new Random();
+        String color = colors[random.nextInt(colors.length)];
+        int randomNumber = random.nextInt(99999 + 1 - 0) + 0;
+        String frameID="F" + String.valueOf(randomNumber);
+        randomNumber = random.nextInt(99999 + 1 - 0) + 0;
+        String engineID = "E" + String.valueOf(randomNumber);
+        randomNumber = random.nextInt(bl.getBrandList().size());
+        Brand brand = bl.getBrandList().get(randomNumber);
+        return new Car(ID, brand, color, frameID, engineID);
     }
 }
