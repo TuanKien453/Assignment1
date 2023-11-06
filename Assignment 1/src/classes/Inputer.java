@@ -74,6 +74,10 @@ public class Inputer {
             try {
                 System.out.print(msg);
                 input = scanner.nextLine();
+                if(input.length()==0){
+                    System.out.println("String cannot be empty");
+                    continue;
+                }
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("Error: You must enter a string. Please try again.");
@@ -82,7 +86,22 @@ public class Inputer {
         }
         return input.trim();
     }
-
+    
+        public static String inputEnter(String msg) {
+        String input;
+        while (true) {
+            try {
+                System.out.print(msg);
+                input = scanner.nextLine();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Error: You must enter, Please try again.");
+                scanner.nextLine();
+            }
+        }
+        return input.trim();
+    }
+        
     public static String inputPattern(String msg, String inputPattern) {
         String input;
         while (true) {
