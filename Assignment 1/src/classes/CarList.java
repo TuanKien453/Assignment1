@@ -17,25 +17,24 @@ public class CarList {
     }
 
     public void saveToFile(String filename) {
-
-        // clear all car in file
-        FileIO.writeFile(filename, "");
+    // Hàm để lưu dữ liệu car vào file car.txt dev by Hoài Nam
+        FileIO.writeFile(filename, ""); // xóa dữ liệu có trước trong file(nếu có)
         for (int i = 0; i < carList.size(); i++) {
             String carData = carList.get(i).getCarID() + "|" + carList.get(i).getBrand().getBrandID() + "|";
-            carData += carList.get(i).getColor() + "|" + carList.get(i).getFrameID() + "|" + carList.get(i).getEngineID() + "\n";
-            FileIO.appendToFile(filename, carData);
+            carData += carList.get(i).getColor() + "|" + carList.get(i).getFrameID() + "|" + carList.get(i).getEngineID() + "\n";// khởi tạo một biến carData có format ID|Brand|Color|FrameID|EngineID
+            FileIO.appendToFile(filename, carData); // Dùng hàm appendToFile để ghi dữ liệu vào file
         }
         System.out.println("Save to file successfully! ");
     }
 
     public void loadFromFile(String filename, BrandList bl) {
-        String Data = FileIO.readFile(filename);
-        String arr[] = Data.split("\n");
-        // clear all car in car list
-        carList.removeAll(carList);
+        // Hàm để tải dữ liệu từ file car.txt dev by Hoài Nam
+        String Data = FileIO.readFile(filename);// Khởi tạo biến Data để lưu trữ dữ liệu sau khi tải lên từ file thông qua hàm readFile
+        String arr[] = Data.split("\n");// Gán các giá trị của từng dòng vào một mảng arr
+        carList.removeAll(carList);// xóa các phần từ đã có trong carList
         for (int i = 0; i < arr.length; i++) {
-            String carData[] = arr[i].split("\\|");
-            Brand br = bl.getBrand(carData[1]);
+            String carData[] = arr[i].split("\\|");// Gán giá trị của từng thuộc tính vào trong mảng carData
+            Brand br = bl.getBrand(carData[1]);  //Khởi tạo một brand mới theo từng dòng
             if (br == null) {
                 System.out.println("Faile to load from file! Brand not found.");
                 return;
@@ -164,7 +163,7 @@ public class CarList {
         Collections.sort(carList, new Comparator<Car>() {
             @Override
             public int compare(Car c1, Car c2) {
-                return c2.getBrand().getBrandName().compareTo(c1.getBrand().getBrandName());
+                return -(c2.getBrand().getBrandName().compareTo(c1.getBrand().getBrandName()));
             }
         });
         int i = 1;
