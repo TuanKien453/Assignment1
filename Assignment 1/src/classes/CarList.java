@@ -15,7 +15,7 @@ public class CarList {
     public CarList() {
         carList = new ArrayList<Car>();
     }
-
+    //DEV by Nguyễn Văn Hoài Nam
     public void saveToFile(String filename) {
     // Hàm để lưu dữ liệu car vào file car.txt dev by Hoài Nam
         FileIO.writeFile(filename, ""); // xóa dữ liệu có trước trong file(nếu có)
@@ -26,7 +26,7 @@ public class CarList {
         }
         System.out.println("Save to file successfully! ");
     }
-
+    //DEV by Nguyễn Văn Hoài Nam
     public void loadFromFile(String filename, BrandList bl) {
         // Hàm để tải dữ liệu từ file car.txt dev by Hoài Nam
         String Data = FileIO.readFile(filename);// Khởi tạo biến Data để lưu trữ dữ liệu sau khi tải lên từ file thông qua hàm readFile
@@ -56,6 +56,7 @@ public class CarList {
 //Done    public boolean removeCar()
 //Done    public boolean updateCar()        
 //Done    public void listCars()        
+    //DEV by Nguyễn Thế Nam modified by Nguyễn Thanh Khuê
     public int searchID(String carID) {
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getCarID().equals(carID)) {
@@ -64,7 +65,7 @@ public class CarList {
         }
         return -1;
     }
-
+    //DEV by Nguyễn Thế Nam modified by Nguyễn Thanh Khuê
     public int searchFrame(String frameID) {
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getFrameID().equals(frameID)) {
@@ -73,7 +74,7 @@ public class CarList {
         }
         return -1;
     }
-
+    //DEV by Nguyễn Thế Nam modified by Nguyễn Thanh Khuê
     public boolean searchEngine(String engineID) {
         for (int i = 0; i < carList.size(); i++) {
             if (carList.get(i).getEngineID().equals(engineID)) {
@@ -82,7 +83,7 @@ public class CarList {
         }
         return false;
     }
-    
+    //DEV by Nguyễn Thanh Khuê
     public void searchCar() {
         String ID = Inputer.inputString("Enter ID of Car you want to search: ");
         for (int i = 0; i < carList.size(); i++) {
@@ -93,11 +94,8 @@ public class CarList {
         }
         System.out.println("Not found Car with ID: " + ID);
     }
-
+    //DEV by Nguyễn Thế Nam modified by Nguyễn Thanh Khuê
     public void addCar(BrandList listBrand) {
-//        for (int i = 0; i < 50; i++) {
-//            carList.add(GeneratorInstant.generateRandomCar("C" + String.valueOf(i), listBrand));
-//        }
         int index;
         String carID;
         while (true) {
@@ -125,7 +123,7 @@ public class CarList {
     }
 
     
-    
+    //DEV by Nguyễn Thanh Khuê
     public void printBasedBrandName() {
         String name = Inputer.inputString("Enter a part of brand name: ");
         int count = 0;
@@ -140,7 +138,7 @@ public class CarList {
             System.out.println("No car is detected.");
         }
     }
-
+    //DEV by Nguyễn Thanh Khuê
     public void updateCar(BrandList brandList) {
         String updateID = Inputer.inputString("Enter ID you want to update: ");
         int index = searchID(updateID);
@@ -157,7 +155,7 @@ public class CarList {
             System.out.println("Car updated successfully!");
         }
     }
-
+    //DEV by Nguyễn Thế Nam
     public boolean removeCar() {
         String removedID;
         int pos;
@@ -171,7 +169,7 @@ public class CarList {
         }
         return false;
     }
-
+    //DEV by Nguyễn Thanh Khuê
     public void listCars() {
         Collections.sort(carList, new Comparator<Car>() {
             @Override
@@ -187,7 +185,7 @@ public class CarList {
             i++;
         }
     }
-
+    //DEV by Hoàng Tuấn Kiên 
     public void printBaseBrandName(BrandList bl) {
         String input = Inputer.inputString("Enter the brand name: ");
         int i = 1;

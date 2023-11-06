@@ -23,6 +23,7 @@ public class BrandList {
 //Done    public void addBrand();
 //Done    public void updateBrand();
 //Done    public void listBrands();
+    //DEV Nguyễn Kiên 
     public void saveToFile(String filename) {
 
         //Clear the file
@@ -34,20 +35,7 @@ public class BrandList {
         }
         System.out.println("Save to file successfully! ");
     }
-
-    public Brand getUserChoice() {
-        int i = 1;
-        DecimalFormat decimalFormat = new DecimalFormat("#.00");
-        System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", "STT", "BrandID", "BrandName", "SoundBrand", "Price"));
-        for (Brand b : brandList) {
-            String formattedPrice = decimalFormat.format(b.getPrice());
-            System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), formattedPrice));
-            i++;
-        }
-        int choice = Inputer.inputInt("Choose the brand: ", 1, brandList.size());
-        return brandList.get(choice - 1);
-    }
-
+    //DEV Nguyễn Kiên 
     public void loadFromFile(String filename) {
         String Data = FileIO.readFile(filename);
         String arr[] = Data.split("\n");
@@ -60,6 +48,20 @@ public class BrandList {
         System.out.println("Load from file successfully! ");
     }
 
+    //DEV by Nguyễn Thanh Khuê
+    public Brand getUserChoice() {
+        int i = 1;
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", "STT", "BrandID", "BrandName", "SoundBrand", "Price"));
+        for (Brand b : brandList) {
+            String formattedPrice = decimalFormat.format(b.getPrice());
+            System.out.println(String.format("%-5s. || %-15s || %-40s || %-20s || %-10s", i, b.getBrandID(), b.getBrandName(), b.getSoundBrand(), formattedPrice));
+            i++;
+        }
+        int choice = Inputer.inputInt("Choose the brand: ", 1, brandList.size());
+        return brandList.get(choice - 1);
+    }
+    //DEV Nguyễn Kiên 
     public int searchID(String ID) {
         for (int i = 0; i < brandList.size(); i++) {
             if (brandList.get(i).getBrandID().equals(ID)) {
@@ -69,7 +71,7 @@ public class BrandList {
         //if not found id return -1
         return -1;
     }
-
+    //DEV Nguyễn Kiên 
     public void searchBrand() {
         String ID = Inputer.inputString("Enter ID of brand you want to search: ");
         for (int i = 0; i < brandList.size(); i++) {
@@ -81,6 +83,7 @@ public class BrandList {
         System.out.println("Not found Brand with ID" + ID);
     }
 
+    //DEV by Nguyễn Thanh Khuê
     public void addBrand() {
         int index;
         String brandID;
@@ -106,6 +109,7 @@ public class BrandList {
         System.out.println("Brand added successfully!");
     }
 
+    //DEV by Nguyễn Thanh Khuê
     public void updateBrand() {
         String brandID = Inputer.inputString("Enter brand ID: ");
         int index = searchID(brandID);
@@ -120,7 +124,7 @@ public class BrandList {
             System.out.println("Brand updated successfully!");
         }
     }
-
+    //DEV Nguyễn Kiên 
     public void listBrands() {
         int i = 1;
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
@@ -132,17 +136,7 @@ public class BrandList {
             i++;
         }
     }
-
-    public void removeBrand(String id) {
-        int index = searchID(id);
-        if (index == -1) {
-            System.out.println("Not found brand ID!");
-        } else {
-            brandList.remove(index);
-            System.out.println("Remove brand successfully!");
-        }
-    }
-
+    //DEV Nguyễn Kiên 
     public Brand getBrand(String brandID) {
         int pos = searchID(brandID);
         if (pos == -1) {

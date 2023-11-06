@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 
 public class FileIO {
-
     /**
      * write content into a file if file not found, create a new file. if file
      * exits override content.
@@ -16,6 +15,7 @@ public class FileIO {
      * need file name
      * @param content : content which will be written
      */
+    //DEV by Hoàng Tuấn Kiên 
     public static boolean writeFile(String filePath, String content) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(content);
@@ -34,6 +34,7 @@ public class FileIO {
      * need file name
      * @param content : content which will be written
      */
+    //DEV by Hoàng Tuấn Kiên 
     public static boolean appendToFile(String filePath, String content) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(content);
@@ -52,7 +53,7 @@ public class FileIO {
      * need file name
      * @return String
      */
-
+    //DEV by Hoàng Tuấn Kiên 
     public static String readFile(String filePath) {
         //Use StringBuilder for faster reading File
         StringBuilder content = new StringBuilder();

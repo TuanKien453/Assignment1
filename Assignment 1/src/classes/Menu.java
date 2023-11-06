@@ -3,7 +3,7 @@ package classes;
 import java.util.*;
 
 public class Menu {
-
+    //DEV by Hoàng Tuấn Kiên 
     public static int getChoice(Object[] option) {
         int i = 0;
         for (Object object : option) {
@@ -15,7 +15,7 @@ public class Menu {
 
         return choice;
     }
-    
+    //DEV by Nguyễn Thanh Khuê
     public static Object ref_getChoice(ArrayList<Object> option){
 
        Object[] brandarr = option.toArray();

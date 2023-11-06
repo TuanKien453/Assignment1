@@ -6,6 +6,7 @@ public class Inputer {
 
     private final static Scanner scanner = new Scanner(System.in);
 
+    //DEV by Hoàng Tuấn Kiên 
     public static int inputInt(String msg, int min, int max) {
         int number;
         while (true) {
@@ -26,6 +27,7 @@ public class Inputer {
         return number;
     }
 
+    //DEV by Hoàng Tuấn Kiên 
     public static int menuChoice(String msg, int min, int max) {
         int number;
         while (true) {
@@ -45,9 +47,8 @@ public class Inputer {
         }
         return number;
     }
-    
-    
 
+    //DEV by Hoàng Tuấn Kiên 
     public static Double inputDouble(String msg, Double min, Double max) {
         Double number;
         while (true) {
@@ -68,13 +69,14 @@ public class Inputer {
         return number;
     }
 
+    //DEV by Hoàng Tuấn Kiên 
     public static String inputString(String msg) {
         String input;
         while (true) {
             try {
                 System.out.print(msg);
                 input = scanner.nextLine();
-                if(input.length()==0){
+                if (input.length() == 0) {
                     System.out.println("String cannot be empty");
                     continue;
                 }
@@ -86,8 +88,9 @@ public class Inputer {
         }
         return input.trim();
     }
-    
-        public static String inputEnter(String msg) {
+    //DEV by Hoàng Tuấn Kiên 
+
+    public static String inputEnter(String msg) {
         String input;
         while (true) {
             try {
@@ -101,7 +104,8 @@ public class Inputer {
         }
         return input.trim();
     }
-        
+
+    //DEV by Hoàng Tuấn Kiên 
     public static String inputPattern(String msg, String inputPattern) {
         String input;
         while (true) {

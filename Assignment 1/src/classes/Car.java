@@ -67,7 +67,7 @@ public class Car {
     public String toString() {
         return  carID + ", " + brand + "." + brand.getBrandID() +", "+ color + ", " + frameID + ", " + engineID;
     }
-    
+    //DEV by Nguyễn Văn Hoài Nam
     public int comparedTo(Car car) {
         int d = this.brand.getBrandName().compareTo(car.brand.getBrandName());
         if (d!=0) 
