@@ -21,6 +21,7 @@ public class Main {
             "Save cars to file, named cars.txt",
             "Load brand from file",
             "Load car from file",
+            "Search Car based on it's ID",
             "Quit the program"};
 
         do {
@@ -28,15 +29,15 @@ public class Main {
             switch (choice) {
                 case 1:
                     brandList.listBrands();
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 2:
                     brandList.addBrand();
-                   Inputer.inputEnter("Press Enter to continue");
+                   Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 3:
                     brandList.searchBrand();
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 4:
                     brandList.updateBrand();
@@ -44,41 +45,45 @@ public class Main {
                     break;
                 case 5:
                     brandList.saveToFile("Brand.txt");
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 6:
                     carList.listCars();
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 7:
                     carList.printBaseBrandName(brandList);
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 8:
                     carList.addCar(brandList);
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 9:
                     carList.removeCar();
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 10:
                     carList.updateCar(brandList);
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 11:
                     carList.saveToFile("Cars.txt");
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 12:
                     brandList.loadFromFile("Brand.txt");
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
                 case 13:
                     carList.loadFromFile("Cars.txt", brandList);
-                    Inputer.inputEnter("Press Enter to continue");
+                    Inputer.inputEnter("Press Enter to continue!");
                     break;
-                case 14:
+                case 14: 
+                    carList.searchCar();
+                    Inputer.inputEnter("Press Enter to continue!");
+                    break;
+                case 15:
                     System.exit(0);
                 default:
                     System.out.println("Invalid choice. Please choose again.");

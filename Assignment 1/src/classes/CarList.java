@@ -83,6 +83,17 @@ public class CarList {
         }
         return false;
     }
+    
+    public void searchCar() {
+        String ID = Inputer.inputString("Enter ID of Car you want to search: ");
+        for (int i = 0; i < carList.size(); i++) {
+            if (carList.get(i).getCarID().equals(ID)) {
+                System.out.println("Found: " + carList.get(i).toString());
+                return;
+            }
+        }
+        System.out.println("Not found Car with ID: " + ID);
+    }
 
     public void addCar(BrandList listBrand) {
 //        for (int i = 0; i < 50; i++) {
@@ -103,7 +114,7 @@ public class CarList {
                 break;
             }
         }
-
+        
         Brand newBrand = listBrand.getUserChoice();
 
         String color = Inputer.inputString("Enter color: ");
@@ -114,6 +125,8 @@ public class CarList {
         System.out.println("Car added succesfully!.");
     }
 
+    
+    
     public void printBasedBrandName() {
         String name = Inputer.inputString("Enter a part of brand name: ");
         int count = 0;
