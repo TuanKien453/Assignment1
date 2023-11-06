@@ -100,7 +100,7 @@ public class BrandList {
         }
         String brandName = Inputer.inputString("Enter brand name: ");
         String soundBrand = Inputer.inputString("Enter sound brand: ");
-        double price = Inputer.inputDouble("Enter price: ", 0d, 100000000000d);
+        double price = Inputer.inputDouble("Enter price: ", 0d, 10000d);
         Brand brand = new Brand(brandID, brandName, soundBrand, price);
         brandList.add(brand);
         System.out.println("Brand added successfully!");
@@ -114,7 +114,7 @@ public class BrandList {
         } else {
             String brandName = Inputer.inputString("Enter brand name: ");
             String soundBrand = Inputer.inputString("Enter sound brand: ");
-            double price = Inputer.inputDouble("Enter price: ", 0d, 100000000000d);
+            double price = Inputer.inputDouble("Enter price: ", 0d, 10000d);
             Brand brand = new Brand(brandID, brandName, soundBrand, price);
             brandList.set(index, brand);
             System.out.println("Brand updated successfully!");

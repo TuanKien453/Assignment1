@@ -106,8 +106,8 @@ public class CarList {
         Brand newBrand = listBrand.getUserChoice();
 
         String color = Inputer.inputString("Enter color: ");
-        String frameID = Inputer.inputString("Enter frameID: ");
-        String engineID = Inputer.inputString("Enter engineID: ");
+        String frameID = Inputer.inputPattern("Enter frameID: ", "^[F]{1}\\d{5}$");
+        String engineID = Inputer.inputPattern("Enter engineID: ", "^[E]{1}\\d{5}$");
         Car newCar = new Car(carID, newBrand, color, frameID, engineID);
         carList.add(newCar);
         System.out.println("Car added succesfully!.");
@@ -137,8 +137,8 @@ public class CarList {
             Brand newBrand = brandList.getUserChoice();
             String newBrandID = newBrand.getBrandID();
             String updateColor = Inputer.inputString("Enter updateColor: ");
-            String updateFrameID = Inputer.inputString("Enter updateFrameID: ");
-            String updateEngineID = Inputer.inputString("Enter updateEngineID: ");
+            String updateFrameID = Inputer.inputPattern("Enter updateFrameID: ", "^[F]{1}\\d{5}$");
+            String updateEngineID = Inputer.inputPattern("Enter updateEngineID: ", "^[E]{1}\\d{5}$");
             Car car = new Car(updateID, newBrand, updateColor, updateFrameID, updateEngineID);
             carList.set(index, car);
             System.out.println("Car updated successfully!");
